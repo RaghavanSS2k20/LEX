@@ -18,3 +18,174 @@ int main(void)
         printf("Number of charaters = %d\nNumber of lines = %d\n",nchar,nline);
         return 0;
 }
+
+//keywords and ops
+
+
+%{
+#include<stdio.h>
+%}
+
+%%
+int|if|switch|case|struct|bool|do|while|float {printf("It is a keyword");}
+[+*/=!] {printf("It is an operator");}
+.* {printf("Invalid");}
+%%
+
+int yywrap(void)
+{
+        return 1;
+}
+
+int main()
+{
+        yylex();
+        return 0;
+}
+
+
+//identifiers and num const
+%{
+#include<stdio.h>
+%}
+
+%%
+[a-z]([a-z0-9])* {printf("It is an identifier");}
+[0-9]* printf("It is a constant");
+.* {printf("Invalid");}
+%%
+
+int yywrap(void)
+{
+        return 1;
+}
+
+int main()
+{
+        yylex();
+        return 0;
+}
+//  floating pnt with exp num
+%{
+#include<stdio.h>
+%}
+
+%%
+[+-]?[0-9]*[.][0-9]+[eE][+-]?[0-9]+ {printf("It is in exponential form");}
+.* {printf("Invalid");}
+%%
+
+int yywrap(void)
+{
+        return 1;
+}
+
+int main()
+{
+        yylex();
+        return 0;
+}
+//hex dec
+%{
+#include<stdio.h>
+%}
+
+%%
+[0-9A-Fa-f]* {printf("It is a hexadecimal number");}
+.* {printf("Invalid");}
+%%
+
+int yywrap(void)
+{
+        return 1;
+}
+
+int main()
+{
+        yylex();
+        return 0;
+}
+// low case five vowels
+%{
+#include<stdio.h>
+%}
+
+%%
+[.*a?.*e?.*i?.*o?.*u?.*] {printf("Valid");}
+.* {printf("Invalid");}
+%%
+
+int yywrap(void)
+{
+        return 1;
+}
+
+int main()
+{
+        yylex();
+        return 0;
+}
+//asc lex oreder string lower case
+%{
+#include<stdio.h>
+%}
+
+%%
+[a]*[b]*[c]*[d]*[e]*[f]*[g]*[h]*[i]*[j]*[k]*[l]*[m]*[n]*[o]*[p]*[q]*[r]*[s]*[t]*[u]*[v]*[w]*[x]*[y]*[z]* {ECHO;}
+.* {printf("No such substring");}
+%%
+
+int yywrap(void)
+{
+        return 1;
+}
+
+int main()
+{
+        yylex();
+        return 0;
+}
+// string with digits one repetetiobn
+%{
+#include<stdio.h>
+%}
+
+%%
+[a-z]([a-z0-9])* {printf("It is an identifier");}
+[0-9]* printf("It is a constant");
+.* {printf("Invalid");}
+%%
+
+int yywrap(void)
+{
+        return 1;
+}
+
+int main()
+{
+        yylex();
+        return 0;
+}
+// string of a,b and not abb
+no code
+//recognise engilsh word with no reps
+%{
+        #include<stdio.h>
+%}
+
+%%
+[a?b?c?d?e?f?g?h?i?j?k?l?m?n?o?p?q?r?s?t?u?v?w?x?y?z] {ECHO;}
+%%
+
+int yywrap()
+{
+        return 1;
+}
+
+int main()
+{
+        yylex();
+        return 0;
+}
+
+
