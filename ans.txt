@@ -1,3 +1,4 @@
+//number of chars and lione
 %{
         int nchar,nline;
 %}
