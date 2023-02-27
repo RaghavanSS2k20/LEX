@@ -1,0 +1,20 @@
+%{
+        int nchar,nline;
+%}
+%%
+\n      {nline++;nchar++;}
+[^ \t\n]+       {nchar+=yyleng;}
+.       {nchar++;}
+%%
+
+int yywrap(void)
+{
+        return 1;
+}
+
+int main(void)
+{
+        yylex();
+        printf("Number of charaters = %d\nNumber of lines = %d\n",nchar,nline);
+        return 0;
+}
